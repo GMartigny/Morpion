@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package morpion.v2;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -12,20 +12,20 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import model.MorpionModel;
 
 /**
  *
  * @author Guigui
  */
-class MorpionView extends JFrame{
+public class GUIView extends JFrame{
     
     private MorpionModel model;
 
-    public MorpionView(String nom, MorpionModel model) {
+    public GUIView(String nom, MorpionModel model) {
         super(nom);
         this.model = model;
         init();
-        model.listening(this);
     }
     
     private void init(){

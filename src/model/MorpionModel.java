@@ -2,29 +2,31 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package morpion.v2;
+package model;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Observable;
+import view.GUIView;
 
 /**
  *
  * @author Guigui
  */
-class MorpionModel {
+public class MorpionModel extends Observable{
     
-    private ArrayList<MorpionView> listener;
+    private ArrayList<GUIView> listener;
     private HashMap data;
 
     public MorpionModel() {
     }
 
-    public void listening(MorpionView view) {
+    public void listening(GUIView view) {
         //this.listener.add(view);
     }
     
     public void update(){
-        for (MorpionView each : listener) {
+        for (GUIView each : listener) {
             each.refresh();
         }
     }

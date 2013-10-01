@@ -2,15 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package morpion.v2;
+package launcher;
 
+import view.MorpionView;
+import controler.MorpionController;
 import javax.swing.SwingUtilities;
+import model.MorpionModel;
+import view.GUIView;
 
 /**
  *
  * @author Guigui
  */
-public class MorpionV2 {
+public class Application {
 
     /**
      * @param args the command line arguments
@@ -25,7 +29,11 @@ public class MorpionV2 {
 
             @Override
             public void run() {
-                MorpionController controller = new MorpionController();
+                MorpionModel model = new MorpionModel();
+                MorpionView view = new MorpionView("Morpion", model);
+                model.addObserver(view);
+                MorpionController controler = new MorpionController();
+                view.addObserver(controler);
             }
         });
     }
