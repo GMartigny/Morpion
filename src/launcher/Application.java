@@ -4,11 +4,10 @@
  */
 package launcher;
 
-import view.MorpionView;
 import controler.MorpionController;
 import javax.swing.SwingUtilities;
 import model.MorpionModel;
-import view.GUIView;
+import view.MorpionView;
 
 /**
  *
@@ -30,8 +29,10 @@ public class Application {
             @Override
             public void run() {
                 MorpionModel model = new MorpionModel();
+                
                 MorpionView view = new MorpionView("Morpion", model);
                 model.addObserver(view);
+                
                 MorpionController controler = new MorpionController();
                 view.addObserver(controler);
             }

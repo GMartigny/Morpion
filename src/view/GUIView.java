@@ -6,12 +6,12 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import model.MorpionModel;
 
 /**
@@ -21,6 +21,8 @@ import model.MorpionModel;
 public class GUIView extends JFrame{
     
     private MorpionModel model;
+    private JPanel drawing;
+    private JTable tableauScore;
 
     public GUIView(String nom, MorpionModel model) {
         super(nom);
@@ -30,36 +32,24 @@ public class GUIView extends JFrame{
     
     private void init(){
         JPanel mainPanel = new JPanel(new BorderLayout());
-        
-        JMenuBar menu = new JMenuBar();
-            JMenu jeu = new JMenu("Jeu");
-                JMenuItem surrender = new JMenuItem("Abandonner");
-                surrender.addActionListener(null);
-                jeu.add(surrender);
-                
-                JSeparator line = new JSeparator();
-                jeu.add(line);
-                
-                JMenuItem quit = new JMenuItem("Quitter");
-                quit.addActionListener(null);
-                jeu.add(quit);
-            menu.add(jeu);
-            JMenu joueur = new JMenu("Joueur");
-                JMenuItem pseudo = new JMenuItem("Pseudo");
-                pseudo.addActionListener(null);
-                joueur.add(pseudo);
-                
-                JMenuItem stats = new JMenuItem("Stats");
-                stats.addActionListener(null);
-                joueur.add(stats);
-            menu.add(joueur);
-        mainPanel.add(menu, BorderLayout.NORTH);
-        
         this.add(mainPanel);
+        
+        JPanel pseudos = new JPanel();
+            JLabel j1 = new JLabel("Joueur 1 :");
+        mainPanel.add(pseudos, BorderLayout.NORTH);
+        
+        JPanel stats = new JPanel();
+            this.tableauScore = new JTable(4, 1); // pas table
+            stats.add(tableauScore);
+            
+        mainPanel.add(stats, BorderLayout.EAST);
+        
+        this.drawing = new JPanel();
+        mainPanel.add(drawing);
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.setMinimumSize(new Dimension(300, 300));
+        this.setMinimumSize(new Dimension(400, 400));
         this.setLocation(700, 300);
         this.pack();
     }
