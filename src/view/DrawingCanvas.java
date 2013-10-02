@@ -22,7 +22,7 @@ public class DrawingCanvas extends JPanel {
     private int gridSize;
 
     public DrawingCanvas() {
-        this.symboles = new ArrayList<>();
+        this.symboles = new ArrayList<Symbole>();
     }
     
     @Override

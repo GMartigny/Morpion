@@ -26,5 +26,9 @@ public class Joueur {
 	public void setForme(Forme forme) {
 		this.forme = forme;
 	}
+	
+	public String toString(){
+		return this.pseudo;
+	}
 
 }

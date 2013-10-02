@@ -36,6 +36,7 @@ public class Symbole {
 	public void setJoueur(Joueur joueur) {
 		this.joueur = joueur;
 	}
+
 	
 	
 	
