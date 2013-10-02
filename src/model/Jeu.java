@@ -1,9 +1,9 @@
 package model;
 
-import java.text.Normalizer.Form;
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Jeu {
+public class Jeu extends Observable{
 	
 	private ArrayList<Symbole> jeu;
 	private Etat etat;
@@ -18,7 +18,9 @@ public class Jeu {
 		this.joueur2 = joueur2;
 	}
 	
-	
+	public Jeu(){
+            
+        }
 	
 
 

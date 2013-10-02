@@ -7,7 +7,7 @@ package view;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
-import model.MorpionModel;
+import model.Jeu;
 
 /**
  *
@@ -16,10 +16,10 @@ import model.MorpionModel;
 public class MorpionView extends Observable implements Observer{
     
     private GUIView gui;
-    private MorpionModel model;
+    private Jeu jeu;
 
-    public MorpionView(String nom, MorpionModel model) {
-        this.model = model;
+    public MorpionView(String nom, Jeu model) {
+        this.jeu = model;
         this.gui = new GUIView(nom, this);
     }
 
@@ -34,11 +34,11 @@ public class MorpionView extends Observable implements Observer{
     }
     
     public ArrayList getSymboleFromModel(){
-        return this.model.getSymbole();
+        return this.jeu.getSymbole();
     }
 
     ArrayList getStatsFromModel() {
-        return this.model.getStats();
+        return this.jeu.getStats();
     }
     
 }

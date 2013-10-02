@@ -6,7 +6,8 @@ package launcher;
 
 import controler.MorpionController;
 import javax.swing.SwingUtilities;
-import model.MorpionModel;
+import model.Jeu;
+import view.MorpionView;
 
 /**
  *
@@ -27,10 +28,10 @@ public class Application {
 
             @Override
             public void run() {
-                MorpionModel model = new MorpionModel();
+                Jeu jeu = new Jeu();
                 
-                MorpionView view = new MorpionView("Morpion", model);
-                model.addObserver(view);
+                MorpionView view = new MorpionView("Morpion", jeu);
+                jeu.addObserver(view);
                 
                 MorpionController controler = new MorpionController();
                 view.addObserver(controler);
