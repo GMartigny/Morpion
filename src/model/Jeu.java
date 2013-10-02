@@ -73,7 +73,7 @@ public class Jeu extends Observable {
 		this.setChanged(); //valider les changements du controlleur
 		
 		if(this.verifierGagner(posX, posY)){
-			this.notifyObservers("GagnŽ");
+			this.notifyObservers("Gagnï¿½");
 		}else{
 			this.notifyObservers("Drawing");
 		}
@@ -125,7 +125,8 @@ public class Jeu extends Observable {
 			
 		break;
 		
-		return false;
+                }
+                return false;
 	}
 	
 	
