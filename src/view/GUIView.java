@@ -12,17 +12,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JTable;
 import javax.swing.JTextField;
 import model.Stat;
 
@@ -56,11 +52,11 @@ public class GUIView extends JFrame{
         this.pseudos = new JPanel();
             JLabel j1 = new JLabel("Joueur 1 :");
             pseudos.add(j1);
-            this.pseudo1 = new JTextField(15);
+            this.pseudo1 = new JTextField("Moi", 15);
             pseudos.add(pseudo1);
             JLabel j2 = new JLabel("Joueur 2 :");
             pseudos.add(j2);
-            this.pseudo2 = new JTextField(15);
+            this.pseudo2 = new JTextField("Toi", 15);
             pseudos.add(pseudo2);
         mainPanel.add(pseudos, BorderLayout.NORTH);
         
