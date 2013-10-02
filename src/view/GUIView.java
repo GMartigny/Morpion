@@ -36,7 +36,7 @@ public class GUIView extends JFrame{
     private JTextField pseudo2;
     private JPanel stats;
     private JPanel chooseGridSize;
-    private ButtonGroup radioGroup;
+    private int gridSize = 3;
 
     public GUIView(String nom, MorpionView view) {
         super(nom);
@@ -76,10 +76,24 @@ public class GUIView extends JFrame{
         
         this.chooseGridSize = new JPanel();
         JRadioButton grid3 = new JRadioButton("3 x 3");
+        grid3.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gridSize = 3;
+            }
+        });
         grid3.setSelected(true);
         JRadioButton grid4 = new JRadioButton("4 x 4");
+        grid4.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                gridSize = 4;
+            }
+        });
         
-        this.radioGroup = new ButtonGroup();
+        ButtonGroup radioGroup = new ButtonGroup();
         radioGroup.add(grid3);
         radioGroup.add(grid4);
         
@@ -91,7 +105,8 @@ public class GUIView extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.notifyObservers("startGame");
+                //view.notifyObservers("startGame");
+                System.out.println(getGridSize());
             }
         });
         chooseGridSize.add(start);
@@ -109,7 +124,7 @@ public class GUIView extends JFrame{
         return this.drawing;
     }
     
-    public String getPseudo1(int num) throws Exception{
+    public String getPseudo(int num) throws Exception{
         switch(num){
             case 1:
                 return this.pseudo1.getText();
@@ -120,8 +135,8 @@ public class GUIView extends JFrame{
         }
     }
     
-    public ButtonModel getGridSize(){
-        return this.radioGroup.getSelection();
+    public int getGridSize(){
+        return this.gridSize;
     }
     
     public void refreshDrawing(ArrayList symboles){
