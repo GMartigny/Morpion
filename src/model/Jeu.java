@@ -73,7 +73,7 @@ public class Jeu extends Observable {
 		this.setChanged(); //valider les changements du controlleur
 		
 		if(this.verifierGagner(posX, posY)){
-			this.notifyObservers("GagnŽ");
+			this.notifyObservers("Gagne");
 		}else{
 			this.notifyObservers("Drawing");
 		}
@@ -111,23 +111,25 @@ public class Jeu extends Observable {
 	}
 
 	public Boolean verifierGagner(int posX, int posY){
-		//checker la ligne
+		//checker la ligne ==> posY ne change pas
 		switch (posX) {
-		case 0:
-			
-		break;
-
-		case 1:
-			
-		break;
-		
-		case 2:
-			
-		break;
-		
-		return false;
-	}
+			case 0:				
+				for(Symbole coord : jeu){
+					System.out.println(coord.getPosX()+" "+coord.getPosY());
+				}
+			break;
 	
+			case 1:
+				
+			break;
+			
+			case 2:
+				
+			break;
+		}
+		return false;
+		
+	}
 	
 
 }
