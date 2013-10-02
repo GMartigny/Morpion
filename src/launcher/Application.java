@@ -6,7 +6,11 @@ package launcher;
 
 import controler.MorpionController;
 import javax.swing.SwingUtilities;
+import model.Forme;
 import model.Jeu;
+import model.Joueur;
+import model.Stat;
+import model.TypeForme;
 import view.MorpionView;
 
 /**

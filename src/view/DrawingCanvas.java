@@ -8,9 +8,7 @@ import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
-
 import javax.swing.JPanel;
-
 import model.Symbole;
 import model.TypeForme;
 
@@ -21,6 +19,7 @@ import model.TypeForme;
 public class DrawingCanvas extends JPanel {
     
     private ArrayList<Symbole> symboles;
+    private int gridSize;
 
     public DrawingCanvas() {
         this.symboles = new ArrayList<>();
@@ -33,10 +32,10 @@ public class DrawingCanvas extends JPanel {
         Graphics2D gra = (Graphics2D)g;
         
         gra.setStroke(new BasicStroke(4));
-        gra.drawLine(this.getWidth()/3, 0, this.getWidth()/3, this.getHeight());
-        gra.drawLine(2*this.getWidth()/3, 0, 2*this.getWidth()/3, this.getHeight());
-        gra.drawLine(0, this.getHeight()/3, this.getWidth(), this.getHeight()/3);
-        gra.drawLine(0, 2*this.getHeight()/3, this.getWidth(), 2*this.getHeight()/3);
+        for (int i = 1; i < this.gridSize; i++) {
+            gra.drawLine(this.getWidth()/gridSize*i, 0, this.getWidth()/gridSize*i, this.getHeight()); // ligne verticale
+            gra.drawLine(0, this.getHeight()/gridSize*i, this.getWidth(), this.getHeight()/gridSize*i); // ligne horyzontale
+        }
         
         for (Symbole symbole : symboles) {
             this.drawShape(gra, symbole.getJoueur().getForme().getType(), symbole.getPosX(), symbole.getPosY());
@@ -48,8 +47,8 @@ public class DrawingCanvas extends JPanel {
     }
 
     private void drawShape(Graphics2D gra, TypeForme type, int posX, int posY) {
-        int partX = this.getWidth()/3;
-        int partY = this.getHeight()/3;
+        int partX = this.getWidth()/gridSize;
+        int partY = this.getHeight()/gridSize;
         
         int x = posX*partX;
         int y = posY*partY;
@@ -63,6 +62,10 @@ public class DrawingCanvas extends JPanel {
         else if(type == TypeForme.rond){
             gra.drawOval(x+b, y+b, partX-2*b, partY-2*b);
         }
+    }
+
+    void setGridSize(int gridSize) {
+        this.gridSize = gridSize;
     }
     
     

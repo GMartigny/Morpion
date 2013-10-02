@@ -6,12 +6,14 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
@@ -67,12 +69,14 @@ public class GUIView extends JFrame{
         
         this.drawing = new DrawingCanvas();
         drawing.setBackground(Color.WHITE);
+        drawing.setCursor(new Cursor(Cursor.HAND_CURSOR));
         drawing.addMouseListener(new MouseAdapter() {
 
             @Override
-            public void mouseClicked(MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 view.makeNotify("click");
             }
+            
         });
         
         this.chooseGridSize = new JPanel();
@@ -116,7 +120,7 @@ public class GUIView extends JFrame{
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
         this.setMinimumSize(new Dimension(800, 600));
-        this.setLocation(700, 300);
+        this.setLocationRelativeTo(null);
         this.pack();
     }
     
@@ -150,6 +154,7 @@ public class GUIView extends JFrame{
         this.mainPanel.add(this.pseudos, BorderLayout.NORTH);
         
         this.mainPanel.remove(this.chooseGridSize);
+        drawing.setGridSize(this.getGridSize());
         mainPanel.add(this.drawing, BorderLayout.CENTER);
         this.pack();
     }
@@ -161,10 +166,16 @@ public class GUIView extends JFrame{
     
     public void refreshStats(ArrayList<Stat> allStats){
         this.stats.removeAll();
-        JPanel buf ;
+        
+        JPanel buf = new JPanel();
+        buf.setPreferredSize(new Dimension(20, 150));
+        buf.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
+        
         for (Stat stat : allStats) {
-            buf = new JPanel();
-            buf.add(new JLabel(stat.getJoueur().getPseudo()));
+            buf.removeAll();
+            
+            buf.add(new JLabel(stat.toString()));
+            
             this.stats.add(buf);
         }
     }

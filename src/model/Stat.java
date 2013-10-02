@@ -2,28 +2,17 @@ package model;
 
 public class Stat {
 
-	private Joueur joueur;
-	private boolean resultat;
+	private Joueur gagnant;
+	private Joueur perdant;
 	
-	public Stat(Joueur joueur, Boolean resultat) {
-            this.joueur = joueur;
-            this.resultat = resultat;
+	public Stat(Joueur gagnant, Joueur perdant) {
+            this.gagnant = gagnant;
+            this.perdant = perdant;
 	}
 
-	public boolean getResultat() {
-		return resultat;
-	}
-
-	public void setResultat(boolean resultat) {
-		this.resultat = resultat;
-	}
-
-	public Joueur getJoueur() {
-		return joueur;
-	}
-
-	public void setJoueur(Joueur joueur) {
-		this.joueur = joueur;
-	}
+    @Override
+	public String toString(){
+            return this.gagnant + " à vaincu " + this.perdant;
+        }
 	
 }

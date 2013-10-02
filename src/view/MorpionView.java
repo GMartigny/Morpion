@@ -67,7 +67,7 @@ public class MorpionView extends Observable implements Observer{
     }
     
     public int calculPos(double pos, int max){
-        return (int) pos / (max / 3);
+        return (int) pos / (max / this.gui.getGridSize());
     }
     
     
