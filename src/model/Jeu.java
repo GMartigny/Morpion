@@ -1,3 +1,4 @@
+
 package model;
 
 import java.util.ArrayList;
@@ -70,8 +71,8 @@ public class Jeu extends Observable {
 	}
 
 	public void addSymbole(Joueur joueur, int posX, int posY){
-		jeu.add(new Symbole(posX, posY, joueur));
-		this.setChanged(); //valider les changements du controlleur
+		if (this.getSymbole(posX, posY)==null) { //eviter d'avoir deux symbole dans la meme case
+			
 		
 		if(this.verifierGagner(posX, posY)){
                         Joueur winner = this.getCurrentJoueur();
@@ -82,7 +83,6 @@ public class Jeu extends Observable {
                         this.toggleCurrentJoueur();
                         this.notifyObservers("Drawing");
 		}
-		
 		
 		
 	}
@@ -203,3 +203,4 @@ public class Jeu extends Observable {
 	
 
 }
+

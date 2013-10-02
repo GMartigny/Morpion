@@ -9,9 +9,6 @@ public class Forme {
             this.type = type;
     }
 
-    public void dessin(){
-    	
-    }
 
     public TypeForme getType() {
             return type;
