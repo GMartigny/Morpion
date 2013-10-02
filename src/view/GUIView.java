@@ -53,6 +53,7 @@ public class GUIView extends JFrame{
         mainPanel.add(stats, BorderLayout.EAST);
         
         this.drawing = new DrawingCanvas();
+        mainPanel.add(drawing);
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);

@@ -17,7 +17,9 @@ class DrawingCanvas extends JPanel {
     }
     
     public void paintComponent(Graphics2D g){
+        System.out.println("Drawing");
         super.paintComponent(g);
-//        g.setStroke(Stroke.);
+        
+        g.drawLine(this.HEIGHT/3, 0, this.HEIGHT/3, this.WIDTH);
     }
 }
