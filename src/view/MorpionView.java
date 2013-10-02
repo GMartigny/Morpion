@@ -44,7 +44,7 @@ public class MorpionView extends Observable implements Observer{
     
     // Récupération des symboles joués
     public ArrayList getSymbolesFromModel(){
-        return this.jeu.getSymbole();
+        return this.jeu.getSymboles();
     }
 
     // Récupération des statistique

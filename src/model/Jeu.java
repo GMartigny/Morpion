@@ -3,6 +3,8 @@ package model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+
+
 public class Jeu extends Observable {
 	
 	private ArrayList<Symbole> jeu;
@@ -54,7 +56,7 @@ public class Jeu extends Observable {
 	}
 	
 	
-	public ArrayList<Symbole> getSymbole(){
+	public ArrayList<Symbole> getSymboles(){
 		return this.jeu;
 	}
 	
@@ -109,25 +111,42 @@ public class Jeu extends Observable {
 		this.setChanged(); //valider les changements du controlleur
 		this.notifyObservers("Start");
 	}
+	
+	public Symbole getSymbole(int posX, int posY){
+		for (Symbole symb : this.jeu) {
+			if(symb.getPosX() == posX && symb.getPosY() == posY){
+				return symb;
+			}
+		}
+		return null;
+	}
 
 	public Boolean verifierGagner(int posX, int posY){
-		//checker la ligne ==> posY ne change pas
-		switch (posX) {
-			case 0:				
-				for(Symbole coord : jeu){
-					System.out.println(coord.getPosX()+" "+coord.getPosY());
-				}
-			break;
-	
-			case 1:
-				
-			break;
+		boolean trouve = true;
+		int temp;
+		Symbole symbole;
+		for (int i = 0; i < 3; i++) {
+			temp = i;
+			symbole = this.getSymbole(posX, i);
+			if (symbole != null && !symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
+				trouve = false;
+			}
+			symbole = this.getSymbole(i, posY);
+			if (symbole != null && !symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
+				trouve = false;
+			}
+			symbole = this.getSymbole(posX+temp-1, posY+temp-1);
+			if (symbole != null && !symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
+				trouve = false;
+			}
+			symbole = this.getSymbole(posX+temp+1, posY-temp+1);
+			if (symbole != null && !symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
+				trouve = false;
+			}
 			
-			case 2:
-				
-			break;
 		}
-		return false;
+		System.out.println(trouve);
+		return trouve;
 		
 	}
 	
