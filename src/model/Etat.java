@@ -1,5 +1,5 @@
 package model;
 
 public enum Etat {
-	start, end
+	start, actif, end
 }

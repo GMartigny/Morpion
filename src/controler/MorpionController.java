@@ -50,6 +50,7 @@ public class MorpionController implements Observer{
 					jeu.setJoueur1(new Joueur(ob.getGUI().getPseudo(1), new Forme(TypeForme.croix)));
 					jeu.setJoueur2(new Joueur(ob.getGUI().getPseudo(2), new Forme(TypeForme.rond)));
 					
+					jeu.demarrerJeu();
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
