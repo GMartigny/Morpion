@@ -11,7 +11,6 @@ import model.Forme;
 import model.Jeu;
 import model.Joueur;
 import model.TypeForme;
-import view.GUIView;
 import view.MorpionView;
 
 /**
