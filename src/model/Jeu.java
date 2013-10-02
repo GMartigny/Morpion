@@ -81,28 +81,11 @@ public class Jeu extends Observable {
 		return currentJoueur;
 	}
 
-
+	
 	public void setCurrentJoueur(Joueur currentJoueur) {
 		this.currentJoueur = currentJoueur;
 	}
 	
-	
-	
-//	public static void main(String[] args) {
-//		// TODO Auto-generated method stub
-//		
-//		
-//		Forme forme1 = new Forme(TypeForme.croix);
-//		Forme forme2 = new Forme(TypeForme.rond);
-//		
-//		Joueur j1 = new Joueur("oner", forme1);
-//		Joueur j2 = new Joueur("guillaume", forme2);
-//		
-//		Jeu jeu = new Jeu(j1, j2);
-//		System.out.println(jeu.getEtat());
-//		jeu.finirJeu();
-//		System.out.println(jeu.getEtat());
-//
-//	}
+
 
 }
