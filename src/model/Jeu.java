@@ -1,6 +1,5 @@
 package model;
 
-import java.text.Normalizer.Form;
 import java.util.ArrayList;
 
 public class Jeu {
@@ -18,9 +17,6 @@ public class Jeu {
 		this.joueur2 = joueur2;
 	}
 	
-	
-	
-
 
 	public Etat getEtat() {
 		return etat;
@@ -52,21 +48,21 @@ public class Jeu {
 	}
 	
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		
-		
-		Forme forme1 = new Forme(TypeForme.croix);
-		Forme forme2 = new Forme(TypeForme.rond);
-		
-		Joueur j1 = new Joueur("oner", forme1);
-		Joueur j2 = new Joueur("guillaume", forme2);
-		
-		Jeu jeu = new Jeu(j1, j2);
-		System.out.println(jeu.getEtat());
-		jeu.finirJeu();
-		System.out.println(jeu.getEtat());
-
-	}
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//		
+//		
+//		Forme forme1 = new Forme(TypeForme.croix);
+//		Forme forme2 = new Forme(TypeForme.rond);
+//		
+//		Joueur j1 = new Joueur("oner", forme1);
+//		Joueur j2 = new Joueur("guillaume", forme2);
+//		
+//		Jeu jeu = new Jeu(j1, j2);
+//		System.out.println(jeu.getEtat());
+//		jeu.finirJeu();
+//		System.out.println(jeu.getEtat());
+//
+//	}
 
 }
