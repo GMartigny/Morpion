@@ -5,4 +5,4 @@
 build.xml
 /nbproject
 manifest.mf
-/dist/
+/bin
