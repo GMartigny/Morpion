@@ -15,18 +15,13 @@ public class Jeu extends Observable {
 	private Joueur currentJoueur;
 	
 	
-	public Jeu(Joueur joueur1, Joueur joueur2) {
-		// TODO Auto-generated constructor stub
-		this.etat = Etat.start;
-		this.joueur1 = joueur1;
-		this.currentJoueur = this.joueur1;
-		this.joueur2 = joueur2;
-	}
-	
-
 	public Jeu() {
 		// TODO Auto-generated constructor stub
+		this.etat = Etat.start;
+		this.currentJoueur = this.joueur1;
 	}
+	
+	
 
 
 	public Etat getEtat() {
