@@ -63,4 +63,12 @@ public class MorpionView extends Observable implements Observer{
         return (int) pos / (max / 3);
     }
     
+    
+    public Jeu getModel(){
+    	return this.jeu;
+    }
+    
+    public GUIView getGUI(){
+    	return this.gui;
+    }
 }
