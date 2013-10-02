@@ -69,6 +69,8 @@ public class Jeu extends Observable {
 
 	public void addSymbole(Joueur joueur, int posX, int posY){
 		jeu.add(new Symbole(posX, posY, joueur));
+		this.setChanged(); //valider les changements du controlleur
+		this.notifyObservers("Drawing");
 	}
 
 
@@ -92,13 +94,11 @@ public class Jeu extends Observable {
 	}
 
 
-
-
 	public void demarrerJeu() {
 		// TODO Auto-generated method stub
 		this.etat = Etat.actif;
 		this.setChanged(); //valider les changements du controlleur
-		this.notifyObservers("Drawing");
+		this.notifyObservers("Start");
 	}
 
 
