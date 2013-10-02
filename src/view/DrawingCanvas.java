@@ -23,7 +23,7 @@ public class DrawingCanvas extends JPanel {
     private ArrayList<Symbole> symboles;
 
     public DrawingCanvas() {
-        this.symboles = new ArrayList<Symbole>();
+        this.symboles = new ArrayList<>();
     }
     
     @Override
@@ -32,7 +32,7 @@ public class DrawingCanvas extends JPanel {
         
         Graphics2D gra = (Graphics2D)g;
         
-        gra.setStroke(new BasicStroke(5));
+        gra.setStroke(new BasicStroke(4));
         gra.drawLine(this.getWidth()/3, 0, this.getWidth()/3, this.getHeight());
         gra.drawLine(2*this.getWidth()/3, 0, 2*this.getWidth()/3, this.getHeight());
         gra.drawLine(0, this.getHeight()/3, this.getWidth(), this.getHeight()/3);
@@ -48,12 +48,20 @@ public class DrawingCanvas extends JPanel {
     }
 
     private void drawShape(Graphics2D gra, TypeForme type, int posX, int posY) {
+        int partX = this.getWidth()/3;
+        int partY = this.getHeight()/3;
+        
+        int x = posX*partX;
+        int y = posY*partY;
+        
+        int b = 20;
+        
         if(type == TypeForme.croix){
-            gra.drawLine(posX+10, posY+10, (this.getWidth()/3)-10, (this.getHeight()/3)-10);
-            gra.drawLine(posX+10, (this.getHeight()/3)-10, (this.getWidth()/3)-10, posY-10);
+            gra.drawLine(x+b, y+b, x+partX-b, y+partY-b);
+            gra.drawLine(x+b, y+partY-b, x+partX-b, y+b);
         }
         else if(type == TypeForme.rond){
-            gra.drawOval(posX+10, posY+10, this.getWidth()/3, this.getHeight()/3);
+            gra.drawOval(x+b, y+b, partX-2*b, partY-2*b);
         }
     }
     
