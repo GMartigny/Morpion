@@ -24,11 +24,14 @@ public class MorpionView extends Observable implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-        if(arg.equals("drawing")){
+        if(arg.equals("Start")){
+            this.gui.startDrawing();
+        }
+        else if(arg.equals("Drawing")){
             ArrayList symboles = this.getSymbolesFromModel();
             this.gui.refreshDrawing(symboles);
         }
-        else if(arg.equals("stats")){
+        else if(arg.equals("Stats")){
             ArrayList stats = this.getStatsFromModel();
             this.gui.refreshStats(stats);
         }

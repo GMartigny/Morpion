@@ -12,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
 import javax.swing.JButton;
@@ -21,6 +22,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import model.Stat;
 
 /**
  *
@@ -31,12 +33,12 @@ public class GUIView extends JFrame{
     private MorpionView view;
     
     private DrawingCanvas drawing;
-    private JTable tableauScore;
     private JTextField pseudo1;
     private JTextField pseudo2;
     private JPanel stats;
     private JPanel chooseGridSize;
     private int gridSize = 3;
+    private JPanel mainPanel;
 
     public GUIView(String nom, MorpionView view) {
         super(nom);
@@ -45,7 +47,7 @@ public class GUIView extends JFrame{
     }
     
     private void init(){
-        JPanel mainPanel = new JPanel(new BorderLayout());
+        this.mainPanel = new JPanel(new BorderLayout());
         this.add(mainPanel);
         
         JPanel pseudos = new JPanel();
@@ -60,6 +62,7 @@ public class GUIView extends JFrame{
         mainPanel.add(pseudos, BorderLayout.NORTH);
         
         this.stats = new JPanel();
+        stats.setLayout(new BoxLayout(stats, BoxLayout.Y_AXIS));
         stats.setPreferredSize(new Dimension(200, 20));
         mainPanel.add(stats, BorderLayout.EAST);
         
@@ -136,15 +139,25 @@ public class GUIView extends JFrame{
     public int getGridSize(){
         return this.gridSize;
     }
+
+    void startDrawing() {
+        this.mainPanel.remove(this.chooseGridSize);
+        mainPanel.add(this.drawing);
+        drawing.repaint();
+    }
     
     public void refreshDrawing(ArrayList symboles){
         this.drawing.setSymboleList(symboles);
+        drawing.repaint();
     }
     
-    public void refreshStats(ArrayList stats){
+    public void refreshStats(ArrayList<Stat> allStats){
         this.stats.removeAll();
-        for (Object stat : stats) {
-            
+        JPanel buf ;
+        for (Stat stat : allStats) {
+            buf = new JPanel();
+            buf.add(new JLabel(stat.getJoueur().getPseudo()));
+            this.stats.add(buf);
         }
     }
     

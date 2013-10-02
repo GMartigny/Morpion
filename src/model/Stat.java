@@ -6,12 +6,11 @@ public class Stat {
 	private boolean resultat;
 	
 	public Stat(Joueur joueur, Boolean resultat) {
-		// TODO Auto-generated constructor stub
-		this.setJoueur(joueur);
-		this.setResultat(resultat);
+            this.joueur = joueur;
+            this.resultat = resultat;
 	}
 
-	public boolean isResultat() {
+	public boolean getResultat() {
 		return resultat;
 	}
 
