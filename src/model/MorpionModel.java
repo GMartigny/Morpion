@@ -5,9 +5,7 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Observable;
-import view.GUIView;
 
 /**
  *
@@ -15,24 +13,25 @@ import view.GUIView;
  */
 public class MorpionModel extends Observable{
     
-    private ArrayList<GUIView> listener;
-    private HashMap data;
+    private ArrayList data;
 
     public MorpionModel() {
+        
     }
 
-    public void listening(GUIView view) {
-        //this.listener.add(view);
+    public ArrayList getData() {
+        throw new UnsupportedOperationException("Not yet implemented");
     }
     
-    public void update(){
-        for (GUIView each : listener) {
-            each.refresh();
-        }
+    public void add(){
+        
     }
-    
-    public HashMap get(){
+
+    public ArrayList getSymbole() {
         return this.data;
     }
-    
+
+    public ArrayList getStats() {
+        return this.data;
+    }
 }
