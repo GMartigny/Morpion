@@ -33,7 +33,7 @@ public class Application {
                 MorpionView view = new MorpionView("Morpion", jeu);
                 jeu.addObserver(view);
                 
-                MorpionController controler = new MorpionController();
+                MorpionController controler = new MorpionController(jeu);
                 view.addObserver(controler);
             }
         });

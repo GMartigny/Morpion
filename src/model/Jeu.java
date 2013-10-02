@@ -1,10 +1,13 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Observable;
 
-public class Jeu {
+public class Jeu extends Observable {
 	
 	private ArrayList<Symbole> jeu;
+	private ArrayList<Stat> stats;
+	
 	private Etat etat;
 	private Joueur joueur1;
 	private Joueur joueur2;
@@ -17,6 +20,11 @@ public class Jeu {
 		this.joueur2 = joueur2;
 	}
 	
+
+	public Jeu() {
+		// TODO Auto-generated constructor stub
+	}
+
 
 	public Etat getEtat() {
 		return etat;
@@ -47,7 +55,24 @@ public class Jeu {
 		this.etat=Etat.end;
 	}
 	
+	
+	public ArrayList<Symbole> getSymbole(){
+		return this.jeu;
+	}
+	
+	public ArrayList<Stat> getStats(){
+		if(this.etat.equals(Etat.end)){
+			return stats;
+		}else{
+			return null;
+		}
+		
+	}
 
+	
+	
+	
+	
 //	public static void main(String[] args) {
 //		// TODO Auto-generated method stub
 //		
