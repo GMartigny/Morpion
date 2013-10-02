@@ -11,6 +11,7 @@ public class Jeu extends Observable {
 	private ArrayList<Stat> stats;
 	
 	private Etat etat;
+        private int taille;
 	private Joueur joueur1;
 	private Joueur joueur2;
 	
@@ -19,7 +20,6 @@ public class Jeu extends Observable {
 	
 	public Jeu() {
 		// TODO Auto-generated constructor stub
-		this.jeu = new ArrayList<Symbole>();
                 this.stats = new ArrayList<Stat>();
 		this.etat = Etat.start;
 	}
@@ -35,6 +35,9 @@ public class Jeu extends Observable {
 		this.etat = etat;
 	}
 
+        public int getTaille() {
+            return taille;
+        }
 
 	public Joueur getJoueur1() {
 		return joueur1;
@@ -62,11 +65,7 @@ public class Jeu extends Observable {
 	}
 	
 	public ArrayList<Stat> getStats(){
-		if(this.etat.equals(Etat.end)){
-			return stats;
-		}else{
-			return null;
-		}
+		return this.stats;
 		
 	}
 
@@ -76,8 +75,7 @@ public class Jeu extends Observable {
 		
 		if(this.verifierGagner(posX, posY)){
                         Joueur winner = this.getCurrentJoueur();
-                        this.toggleCurrentJoueur();
-                        Joueur looser = this.getCurrentJoueur();
+                        Joueur looser = this.getNotCurrentJoueur();
                         this.addStat(new Stat(winner, looser));
 			this.notifyObservers("Gagne");
 		}else{
@@ -110,13 +108,22 @@ public class Jeu extends Observable {
 	}
 
 
-	public void demarrerJeu() {
-		// TODO Auto-generated method stub
+	public void demarrerJeu(int taille) {
+                this.jeu = new ArrayList<Symbole>();
+                this.taille = taille;
 		this.etat = Etat.actif;
 		this.currentJoueur = this.joueur1;
 		this.setChanged(); //valider les changements du controlleur
 		this.notifyObservers("Start");
 	}
+        
+        public void redemarrerJeu(){
+                this.jeu = new ArrayList<Symbole>();
+		this.etat = Etat.actif;
+		this.currentJoueur = this.joueur1;
+		this.setChanged(); //valider les changements du controlleur
+		this.notifyObservers("Drawing");
+        }
 	
 	public Symbole getSymbole(int posX, int posY){
 		for (Symbole symb : this.jeu) {
@@ -130,52 +137,67 @@ public class Jeu extends Observable {
 	public Boolean verifierGagner(int posX, int posY){
 		boolean winLigne = true;
 		boolean winColon = true;
-		boolean winCross = true;
-		int temp;
+		boolean winCross1 = true;
+		boolean winCross2 = true;
+                
 		Symbole symbole;
-		for (int i = 0; i < 3; i++) {
-                    String out = "ok";
+                Forme playedForme = this.currentJoueur.getForme();
+                Forme otherForme;
+                
+		for (int i = 0; i < this.taille; i++) {
+                    
+                    symbole = this.getSymbole(i, posY);
+                    if(symbole == null){
+                        winLigne = false;
+                    }
+                    else if(!symbole.getJoueur().getForme().equals(playedForme)){
+                        winLigne = false;
+                    }
+                    
                     symbole = this.getSymbole(posX, i);
                     if(symbole == null){
-                        out = "null";
                         winColon = false;
                     }
-                    else if(!symbole.getJoueur().getForme().equals(this.currentJoueur.getForme())){
-                        out = "different";
+                    else if(!symbole.getJoueur().getForme().equals(playedForme)){
                         winColon = false;
                     }
-                    System.out.println(out);
                     
-//			temp = i;
-//			symbole = this.getSymbole(posX, i);
-//			if (symbole != null && symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
-//				trouve = true;
-//			}
-//                        
-//			symbole = this.getSymbole(i, posY);
-//			if (symbole != null && symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
-//				trouve = true;
-//			}
-//                        
-//			symbole = this.getSymbole(i, i);
-//			if (symbole != null && symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
-//				trouve = true;
-//			}
-//                       
-//			symbole = this.getSymbole(i, 2-i);
-//			if (symbole != null && symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
-//				trouve = true;
-//			}
+                    symbole = this.getSymbole(i, i);
+                    if(symbole == null){
+                        winCross1 = false;
+                    }
+                    else if(!symbole.getJoueur().getForme().equals(playedForme)){
+                        winCross1 = false;
+                    }
+                    
+                    symbole = this.getSymbole(i, 2-i);
+                    if(symbole == null){
+                        winCross2 = false;
+                    }
+                    else if(!symbole.getJoueur().getForme().equals(playedForme)){
+                        winCross2 = false;
+                    }
 			
 		}
-                boolean win = winColon;
-		System.out.println(win);
+                boolean win = winColon || winLigne || winCross1 || winCross2;
 		return win;
 		
 	}
 
     public void addStat(Stat stat) {
         this.stats.add(stat);
+        if(4 <= this.stats.size()){
+            this.stats.remove(0);
+        }
+    }
+
+    private Joueur getNotCurrentJoueur() {
+        if(this.currentJoueur.equals(this.joueur1)){
+            return this.joueur2;
+        }
+        else{
+            return this.joueur1;
+        }
     }
 	
 	

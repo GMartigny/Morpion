@@ -25,15 +25,15 @@ public class MorpionView extends Observable implements Observer{
     @Override
     public void update(Observable o, Object arg) {
         if(arg.equals("Start")){
+            ArrayList symboles = this.getSymbolesFromModel();
             this.gui.startDrawing();
         }
         else if(arg.equals("Drawing")){
             ArrayList symboles = this.getSymbolesFromModel();
             this.gui.refreshDrawing(symboles);
         }
-        else if(arg.equals("Stats")){
-            ArrayList stats = this.getStatsFromModel();
-            this.gui.refreshStats(stats);
+        else if(arg.equals("Gagne")){
+            WinFrame win = new WinFrame(this);
         }
     }
     
@@ -77,5 +77,10 @@ public class MorpionView extends Observable implements Observer{
     
     public GUIView getGUI(){
     	return this.gui;
+    }
+
+    void saveStats() {
+            ArrayList stats = this.getStatsFromModel();
+            this.gui.refreshStats(stats);
     }
 }

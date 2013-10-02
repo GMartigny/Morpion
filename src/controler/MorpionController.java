@@ -6,7 +6,6 @@ package controler;
 
 import java.util.Observable;
 import java.util.Observer;
-
 import model.Forme;
 import model.Jeu;
 import model.Joueur;
@@ -47,13 +46,22 @@ public class MorpionController implements Observer{
 				try {
 					jeu.setJoueur1(new Joueur(ob.getGUI().getPseudo(1), new Forme(TypeForme.croix)));
 					jeu.setJoueur2(new Joueur(ob.getGUI().getPseudo(2), new Forme(TypeForme.rond)));		
-					jeu.demarrerJeu();
+					jeu.demarrerJeu(this.view.getGUI().getGridSize());
 					
 				} catch (Exception e) {
 					// TODO Auto-generated catch block
-					e.printStackTrace();
+                                        System.out.println(e.getMessage());
 				}
 			}
+                if(arg.equals("restartGame")){
+				try {		
+					jeu.redemarrerJeu();
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+                                        System.out.println(e.getMessage());
+				}
+                }
 	    	
 	    	
 

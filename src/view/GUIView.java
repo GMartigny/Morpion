@@ -171,6 +171,7 @@ public class GUIView extends JFrame{
         buf.setPreferredSize(new Dimension(20, 150));
         buf.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
         
+        System.out.println(allStats);
         for (Stat stat : allStats) {
             buf.removeAll();
             
@@ -178,6 +179,7 @@ public class GUIView extends JFrame{
             
             this.stats.add(buf);
         }
+        this.stats.revalidate();
     }
     
 }
