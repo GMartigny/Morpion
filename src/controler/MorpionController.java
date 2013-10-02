@@ -35,7 +35,7 @@ public class MorpionController implements Observer{
     	
     	//Au click, on ajoute le symbole dans le model "jeu"
 	    	if(arg.equals("click")){
-	    		//rŽcupŽrer la case cliquŽe et le joueur qui a cliquŽ
+	    		//rï¿½cupï¿½rer la case cliquï¿½e et le joueur qui a cliquï¿½
 		    	int posX = ob.getPosX();
 		    	int posY = ob.getPosY();
 		    	Joueur joueur = jeu.getCurrentJoueur();

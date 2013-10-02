@@ -12,6 +12,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.BoxLayout;
 import javax.swing.ButtonGroup;
 import javax.swing.ButtonModel;
@@ -39,6 +41,7 @@ public class GUIView extends JFrame{
     private JPanel chooseGridSize;
     private int gridSize = 3;
     private JPanel mainPanel;
+    private JPanel pseudos;
 
     public GUIView(String nom, MorpionView view) {
         super(nom);
@@ -50,7 +53,7 @@ public class GUIView extends JFrame{
         this.mainPanel = new JPanel(new BorderLayout());
         this.add(mainPanel);
         
-        JPanel pseudos = new JPanel();
+        this.pseudos = new JPanel();
             JLabel j1 = new JLabel("Joueur 1 :");
             pseudos.add(j1);
             this.pseudo1 = new JTextField(15);
@@ -77,40 +80,40 @@ public class GUIView extends JFrame{
         });
         
         this.chooseGridSize = new JPanel();
-        JRadioButton grid3 = new JRadioButton("3 x 3");
-        grid3.addActionListener(new ActionListener() {
+            JRadioButton grid3 = new JRadioButton("3 x 3");
+            grid3.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gridSize = 3;
-            }
-        });
-        grid3.setSelected(true);
-        JRadioButton grid4 = new JRadioButton("4 x 4");
-        grid4.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    gridSize = 3;
+                }
+            });
+            grid3.setSelected(true);
+            JRadioButton grid4 = new JRadioButton("4 x 4");
+            grid4.addActionListener(new ActionListener() {
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                gridSize = 4;
-            }
-        });
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    gridSize = 4;
+                }
+            });
         
-        ButtonGroup radioGroup = new ButtonGroup();
-        radioGroup.add(grid3);
-        radioGroup.add(grid4);
-        
-        chooseGridSize.add(new JLabel("Choisissez votre grille :"));
-        chooseGridSize.add(grid3);
-        chooseGridSize.add(grid4);
-        JButton start = new JButton("Ok");
-        start.addActionListener(new ActionListener() {
+            ButtonGroup radioGroup = new ButtonGroup();
+            radioGroup.add(grid3);
+            radioGroup.add(grid4);
 
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                view.makeNotify("startGame");
-            }
-        });
-        chooseGridSize.add(start);
+            chooseGridSize.add(new JLabel("Choisissez votre grille :"));
+            chooseGridSize.add(grid3);
+            chooseGridSize.add(grid4);
+            JButton start = new JButton("Ok");
+            start.addActionListener(new ActionListener() {
+
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    view.makeNotify("startGame");
+                }
+            });
+            chooseGridSize.add(start);
         
         mainPanel.add(chooseGridSize);
         
@@ -141,9 +144,18 @@ public class GUIView extends JFrame{
     }
 
     void startDrawing() {
+        this.mainPanel.remove(this.pseudos);
+        pseudos = new JPanel();
+        try {
+            pseudos.add(new JLabel(this.getPseudo(1) + " contre " + this.getPseudo(2)));
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        this.mainPanel.add(this.pseudos, BorderLayout.NORTH);
+        
         this.mainPanel.remove(this.chooseGridSize);
-        mainPanel.add(this.drawing);
-        drawing.repaint();
+        mainPanel.add(this.drawing, BorderLayout.CENTER);
+        this.pack();
     }
     
     public void refreshDrawing(ArrayList symboles){
