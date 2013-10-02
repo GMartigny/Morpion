@@ -19,7 +19,6 @@ public class Jeu extends Observable {
 		// TODO Auto-generated constructor stub
 		this.jeu = new ArrayList<Symbole>();
 		this.etat = Etat.start;
-		this.currentJoueur = this.joueur1;
 	}
 	
 	
@@ -73,7 +72,7 @@ public class Jeu extends Observable {
 		this.setChanged(); //valider les changements du controlleur
 		
 		if(this.verifierGagner(posX, posY)){
-			this.notifyObservers("Gagn�");
+			this.notifyObservers("Gagne");
 		}else{
 			this.notifyObservers("Drawing");
 		}
@@ -106,6 +105,7 @@ public class Jeu extends Observable {
 	public void demarrerJeu() {
 		// TODO Auto-generated method stub
 		this.etat = Etat.actif;
+		this.currentJoueur = this.joueur1;
 		this.setChanged(); //valider les changements du controlleur
 		this.notifyObservers("Start");
 	}
