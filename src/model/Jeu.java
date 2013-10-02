@@ -85,8 +85,8 @@ public class Jeu extends Observable {
 		}
 		
 		
-	}
-
+            }
+        }
 
 	public Joueur getCurrentJoueur() {
 		return currentJoueur;
