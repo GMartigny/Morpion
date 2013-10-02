@@ -37,10 +37,26 @@ public class MorpionView extends Observable implements Observer{
         return this.jeu.getSymbole();
     }
 
-    ArrayList getStatsFromModel() {
+    public ArrayList getStatsFromModel() {
         return this.jeu.getStats();
     }
 
+    public int getPosX(){
+        // position du clic par rapport au hauteur max du canvas
+        double posX = this.gui.getDrawing().getMousePosition().x;
+        int maxX = this.gui.getDrawing().getWidth();
+        return this.calculPos(posX, maxX);
+    }
+
+    public int getPosY(){
+        // position du clic par rapport au hauteur max du canvas
+        double posY = this.gui.getDrawing().getMousePosition().y;
+        int maxY = this.gui.getDrawing().getHeight();
+        return this.calculPos(posY, maxY);
+    }
     
+    public int calculPos(double pos, int max){
+        return (int) pos / (max / 3);
+    }
     
 }

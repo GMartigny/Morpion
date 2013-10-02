@@ -5,7 +5,10 @@
 package view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -53,6 +56,15 @@ public class GUIView extends JFrame{
         mainPanel.add(stats, BorderLayout.EAST);
         
         this.drawing = new DrawingCanvas();
+        drawing.setBackground(Color.WHITE);
+        drawing.addMouseListener(new MouseAdapter() {
+
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                
+            }
+            
+        });
         mainPanel.add(drawing);
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -60,6 +72,10 @@ public class GUIView extends JFrame{
         this.setMinimumSize(new Dimension(800, 600));
         this.setLocation(700, 300);
         this.pack();
+    }
+    
+    public DrawingCanvas getDrawing(){
+        return this.drawing;
     }
     
     public void refreshDrawing(){
