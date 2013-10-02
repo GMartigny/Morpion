@@ -9,6 +9,7 @@ package launcher;
  * @author Guigui
  */
 public enum State {
+
     EMPTY,
     CROSS,
     ROUND;
