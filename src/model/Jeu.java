@@ -71,20 +71,21 @@ public class Jeu extends Observable {
 	}
 
 	public void addSymbole(Joueur joueur, int posX, int posY){
-		jeu.add(new Symbole(posX, posY, joueur));
-		this.setChanged(); //valider les changements du controlleur
+		if (this.getSymbole(posX, posY)!=null) {
+			jeu.add(new Symbole(posX, posY, joueur));
+			this.setChanged(); //valider les changements du controlleur
+			
+			if(false){
+	                    Joueur winner = this.getCurrentJoueur();
+	                    this.toggleCurrentJoueur();
+	                    Joueur looser = this.getCurrentJoueur();
+	                    this.addStat(new Stat(winner, looser));
+				this.notifyObservers("Gagne");
+			}else{
+				this.notifyObservers("Drawing");
+			}
 		
-		if(this.verifierGagner(posX, posY)){
-                    Joueur winner = this.getCurrentJoueur();
-                    this.toggleCurrentJoueur();
-                    Joueur looser = this.getCurrentJoueur();
-                    this.addStat(new Stat(winner, looser));
-			this.notifyObservers("Gagne");
-		}else{
-			this.notifyObservers("Drawing");
 		}
-		
-		
 		
 	}
 
