@@ -6,13 +6,12 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.util.ArrayList;
 import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import model.MorpionModel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
@@ -20,52 +19,61 @@ import model.MorpionModel;
  */
 public class GUIView extends JFrame{
     
-    private MorpionModel model;
+    private MorpionView view;
+    
+    private DrawingCanvas drawing;
+    private JTable tableauScore;
+    private JTextField pseudo1;
+    private JTextField pseudo2;
+    private JPanel stats;
 
-    public GUIView(String nom, MorpionModel model) {
+    public GUIView(String nom, MorpionView view) {
         super(nom);
-        this.model = model;
+        this.view = view;
         init();
     }
     
     private void init(){
         JPanel mainPanel = new JPanel(new BorderLayout());
-        
-        JMenuBar menu = new JMenuBar();
-            JMenu jeu = new JMenu("Jeu");
-                JMenuItem surrender = new JMenuItem("Abandonner");
-                surrender.addActionListener(null);
-                jeu.add(surrender);
-                
-                JSeparator line = new JSeparator();
-                jeu.add(line);
-                
-                JMenuItem quit = new JMenuItem("Quitter");
-                quit.addActionListener(null);
-                jeu.add(quit);
-            menu.add(jeu);
-            JMenu joueur = new JMenu("Joueur");
-                JMenuItem pseudo = new JMenuItem("Pseudo");
-                pseudo.addActionListener(null);
-                joueur.add(pseudo);
-                
-                JMenuItem stats = new JMenuItem("Stats");
-                stats.addActionListener(null);
-                joueur.add(stats);
-            menu.add(joueur);
-        mainPanel.add(menu, BorderLayout.NORTH);
-        
         this.add(mainPanel);
+        
+        JPanel pseudos = new JPanel();
+            JLabel j1 = new JLabel("Joueur 1 :");
+            pseudos.add(j1);
+            this.pseudo1 = new JTextField(15);
+            pseudos.add(pseudo1);
+            JLabel j2 = new JLabel("Joueur 2 :");
+            pseudos.add(j2);
+            this.pseudo2 = new JTextField(15);
+            pseudos.add(pseudo2);
+        mainPanel.add(pseudos, BorderLayout.NORTH);
+        
+        this.stats = new JPanel();
+        stats.setPreferredSize(new Dimension(200, 20));
+        mainPanel.add(stats, BorderLayout.EAST);
+        
+        this.drawing = new DrawingCanvas();
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
-        this.setMinimumSize(new Dimension(300, 300));
+        this.setMinimumSize(new Dimension(800, 600));
         this.setLocation(700, 300);
         this.pack();
     }
     
-    public void refresh(){
-        
+    public void refreshDrawing(){
+        ArrayList arr = this.view.getSymboleFromModel();
+        for (Object symbol : arr) {
+            
+        }
+    }
+    
+    public void refreshStats(){
+        this.stats.removeAll();
+        ArrayList allStats = this.view.getStatsFromModel();
+        for (Object stats : allStats) {
+            
+        }
     }
     
 }

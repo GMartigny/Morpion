@@ -6,7 +6,6 @@ package controler;
 
 import java.util.Observable;
 import java.util.Observer;
-import model.MorpionModel;
 import view.GUIView;
 
 /**
@@ -15,7 +14,6 @@ import view.GUIView;
  */
 public class MorpionController implements Observer{
     
-    MorpionModel model;
     GUIView view;
 
     public MorpionController() {
