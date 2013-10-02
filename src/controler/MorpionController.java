@@ -7,8 +7,10 @@ package controler;
 import java.util.Observable;
 import java.util.Observer;
 
+import model.Forme;
 import model.Jeu;
 import model.Joueur;
+import model.TypeForme;
 import view.GUIView;
 import view.MorpionView;
 
@@ -29,17 +31,32 @@ public class MorpionController implements Observer{
     @Override
     public void update(Observable o, Object arg) {
     	MorpionView ob = (MorpionView)o;
-    	//récupérer la case cliquée et le joueur qui a cliqué
-	    	int posX = ob.getPosX();
-	    	int posY = ob.getPosY();
-	    	Joueur joueur = jeu.getCurrentJoueur();
+    	
     	
     	//Au click, on ajoute le symbole dans le model "jeu"
-	    	if(arg.equals("click")){    		
+	    	if(arg.equals("click")){
+	    		//récupérer la case cliquée et le joueur qui a cliqué
+		    	int posX = ob.getPosX();
+		    	int posY = ob.getPosY();
+		    	Joueur joueur = jeu.getCurrentJoueur();
+	    		
 	    		jeu.addSymbole(joueur, posX, posY);
 	    		jeu.toggleCurrentJoueur(); 
 	    		this.view.getGUI().repaint();
 	    	}	
+	    	
+	    	if (arg.equals("startGame")) {
+				try {
+					jeu.setJoueur1(new Joueur(ob.getGUI().getPseudo(1), new Forme(TypeForme.croix)));
+					jeu.setJoueur2(new Joueur(ob.getGUI().getPseudo(2), new Forme(TypeForme.rond)));
+					
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+	    	
+	    	
 
     }
     
