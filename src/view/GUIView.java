@@ -69,9 +69,8 @@ public class GUIView extends JFrame{
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                view.notifyObservers("click");
+                view.makeNotify("click");
             }
-            
         });
         
         this.chooseGridSize = new JPanel();
@@ -105,7 +104,7 @@ public class GUIView extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.notifyObservers("startGame");
+                view.makeNotify("startGame");
             }
         });
         chooseGridSize.add(start);

@@ -10,7 +10,6 @@ import java.util.Observer;
 import model.Jeu;
 
 /**
- *
  * @author Guigui
  */
 public class MorpionView extends Observable implements Observer{
@@ -33,6 +32,11 @@ public class MorpionView extends Observable implements Observer{
             ArrayList stats = this.getStatsFromModel();
             this.gui.refreshStats(stats);
         }
+    }
+    
+    public void makeNotify(String message){
+        this.setChanged();
+        this.notifyObservers(message);
     }
     
     // Récupération des symboles joués
