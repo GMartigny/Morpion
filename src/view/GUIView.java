@@ -29,6 +29,7 @@ public class GUIView extends JFrame{
     private JTextField pseudo1;
     private JTextField pseudo2;
     private JPanel stats;
+    private JPanel chooseGridSize;
 
     public GUIView(String nom, MorpionView view) {
         super(nom);
@@ -61,11 +62,13 @@ public class GUIView extends JFrame{
 
             @Override
             public void mouseClicked(MouseEvent e) {
-                
+                view.notifyObservers("click");
             }
             
         });
-        mainPanel.add(drawing);
+        
+        this.chooseGridSize = new JPanel();
+        
         
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -78,17 +81,28 @@ public class GUIView extends JFrame{
         return this.drawing;
     }
     
-    public void refreshDrawing(){
-        ArrayList arr = this.view.getSymboleFromModel();
-        for (Object symbol : arr) {
-            
+    public String getPseudo1(int num) throws Exception{
+        switch(num){
+            case 1:
+                return this.pseudo1.getText();
+            case 2:
+                return this.pseudo2.getText();
+            default:
+                throw new Exception("Unknown player's number");
         }
     }
     
-    public void refreshStats(){
+    public int getGridSize(){
+        return 3;
+    }
+    
+    public void refreshDrawing(ArrayList symboles){
+        this.drawing.setSymboleList(symboles);
+    }
+    
+    public void refreshStats(ArrayList stats){
         this.stats.removeAll();
-        ArrayList allStats = this.view.getStatsFromModel();
-        for (Object stats : allStats) {
+        for (Object stat : stats) {
             
         }
     }
