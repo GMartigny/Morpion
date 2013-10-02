@@ -8,7 +8,6 @@ import view.MorpionView;
 import controler.MorpionController;
 import javax.swing.SwingUtilities;
 import model.MorpionModel;
-import view.GUIView;
 
 /**
  *
