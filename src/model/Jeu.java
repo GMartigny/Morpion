@@ -3,6 +3,11 @@ package model;
 import java.util.ArrayList;
 import java.util.Observable;
 
+/**
+ * Classe de modele du Morpion
+ *
+ * @author Oner
+ */
 public class Jeu extends Observable {
 
     private ArrayList<Symbole> jeu;
@@ -13,7 +18,6 @@ public class Jeu extends Observable {
     private Joueur currentJoueur;
 
     public Jeu() {
-        // TODO Auto-generated constructor stub
         this.stats = new ArrayList<Stat>();
     }
 
@@ -61,8 +65,6 @@ public class Jeu extends Observable {
                 this.toggleCurrentJoueur();
                 this.notifyObservers("Drawing");
             }
-
-
         }
     }
 
@@ -93,7 +95,6 @@ public class Jeu extends Observable {
 
     public void redemarrerJeu() {
         this.jeu = new ArrayList<Symbole>();
-        this.currentJoueur = this.joueur1;
         this.setChanged(); //valider les changements du controlleur
         this.notifyObservers("Drawing");
     }
@@ -122,29 +123,41 @@ public class Jeu extends Observable {
             symbole = this.getSymbole(i, posY);
             if (symbole == null) {
                 winLigne = false;
-            } else if (!symbole.getJoueur().getForme().equals(playedForme)) {
-                winLigne = false;
+            } else {
+                otherForme = symbole.getJoueur().getForme();
+                if (!otherForme.equals(playedForme)) {
+                    winLigne = false;
+                }
             }
 
             symbole = this.getSymbole(posX, i);
             if (symbole == null) {
                 winColon = false;
-            } else if (!symbole.getJoueur().getForme().equals(playedForme)) {
-                winColon = false;
+            } else {
+                otherForme = symbole.getJoueur().getForme();
+                if (!otherForme.equals(playedForme)) {
+                    winColon = false;
+                }
             }
 
             symbole = this.getSymbole(i, i);
             if (symbole == null) {
                 winCross1 = false;
-            } else if (!symbole.getJoueur().getForme().equals(playedForme)) {
-                winCross1 = false;
+            } else {
+                otherForme = symbole.getJoueur().getForme();
+                if (!otherForme.equals(playedForme)) {
+                    winCross1 = false;
+                }
             }
 
             symbole = this.getSymbole(i, 2 - i);
             if (symbole == null) {
                 winCross2 = false;
-            } else if (!symbole.getJoueur().getForme().equals(playedForme)) {
-                winCross2 = false;
+            } else {
+                otherForme = symbole.getJoueur().getForme();
+                if (!otherForme.equals(playedForme)) {
+                    winCross2 = false;
+                }
             }
 
         }
@@ -154,9 +167,9 @@ public class Jeu extends Observable {
     }
 
     public void addStat(Stat stat) {
-        this.stats.add(stat);
+        this.stats.add(0, stat);
         if (7 < this.stats.size()) {
-            this.stats.remove(0);
+            this.stats.remove(this.stats.size()-1);
         }
     }
 

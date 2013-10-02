@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import java.util.ArrayList;
@@ -10,6 +6,8 @@ import java.util.Observer;
 import model.Jeu;
 
 /**
+ * Classe de la vue du Morpion
+ * 
  * @author Guigui
  */
 public class MorpionView extends Observable implements Observer {
@@ -25,7 +23,6 @@ public class MorpionView extends Observable implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         if (arg.equals("Start")) {
-            ArrayList symboles = this.getSymbolesFromModel();
             this.gui.startDrawing();
         } else if (arg.equals("Drawing")) {
             ArrayList symboles = this.getSymbolesFromModel();

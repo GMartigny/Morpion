@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Classe representant une statistique pour l'historique
+ *
+ * @author Oner
+ */
 public class Stat {
 
     private Joueur gagnant;

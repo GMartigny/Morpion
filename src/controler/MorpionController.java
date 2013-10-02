@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package controler;
 
 import java.util.Observable;
@@ -13,6 +9,7 @@ import model.TypeForme;
 import view.MorpionView;
 
 /**
+ * Controleur du Morpion
  *
  * @author Guigui
  */
@@ -42,6 +39,7 @@ public class MorpionController implements Observer {
             this.view.getGUI().repaint();
         }
 
+        // Le jeu demarre
         if (arg.equals("startGame")) {
             try {
                 jeu.setJoueur1(new Joueur(ob.getGUI().getPseudo(1), new Forme(TypeForme.croix)));
@@ -49,25 +47,18 @@ public class MorpionController implements Observer {
                 jeu.demarrerJeu(this.view.getGUI().getGridSize());
 
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 System.out.println(e.getMessage());
             }
         }
+
+        // Redemarrage du jeu
         if (arg.equals("restartGame")) {
             try {
                 jeu.redemarrerJeu();
 
             } catch (Exception e) {
-                // TODO Auto-generated catch block
                 System.out.println(e.getMessage());
             }
         }
-
-
-
-    }
-
-    public Jeu getJeu() {
-        return jeu;
     }
 }

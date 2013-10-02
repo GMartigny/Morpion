@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package view;
 
 import java.awt.BorderLayout;
@@ -26,7 +22,9 @@ import javax.swing.JTextField;
 import model.Stat;
 
 /**
- *
+ * Frame principale avec fonction de dessins
+ * et elements de l'IHM
+ * 
  * @author Guigui
  */
 public class GUIView extends JFrame {
@@ -64,7 +62,7 @@ public class GUIView extends JFrame {
 
         this.stats = new JPanel();
         stats.setLayout(new BoxLayout(stats, BoxLayout.Y_AXIS));
-        stats.setPreferredSize(new Dimension(200, 20));
+        stats.setPreferredSize(new Dimension(250, 20));
         mainPanel.add(stats, BorderLayout.EAST);
 
         this.drawing = new DrawingCanvas();
@@ -138,7 +136,8 @@ public class GUIView extends JFrame {
         return this.gridSize;
     }
 
-    void startDrawing() {
+    // Enleve les textfield et les radio pour le parametrage du depart
+    public void startDrawing() {
         this.mainPanel.remove(this.pseudos);
         pseudos = new JPanel();
         try {
@@ -166,7 +165,7 @@ public class GUIView extends JFrame {
 
         for (Stat stat : allStats) {
             buf = new JPanel(new GridBagLayout());
-            buf.setMaximumSize(new Dimension(180, 60));
+            buf.setMaximumSize(new Dimension(240, 60));
             buf.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
             JLabel info = new JLabel(stat.toString());
             buf.add(info);

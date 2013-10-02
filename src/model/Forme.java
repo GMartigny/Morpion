@@ -1,5 +1,10 @@
 package model;
 
+/**
+ * Classe representant les formes
+ *
+ * @author Oner
+ */
 public class Forme {
 
     private TypeForme type;
@@ -15,5 +20,14 @@ public class Forme {
 
     public void setType(TypeForme type) {
         this.type = type;
+    }
+    
+    public String toString(){
+        if(this.type == TypeForme.croix){
+            return "X";
+        }
+        else{
+            return "O";
+        }
     }
 }

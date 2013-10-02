@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package launcher;
 
 import controler.MorpionController;
@@ -10,17 +6,13 @@ import model.Jeu;
 import view.MorpionView;
 
 /**
+ * Lanceur de l'application
  *
  * @author Guigui
  */
 public class Application {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
-
         // connection au serveur
 
         // lancement de l'appli
