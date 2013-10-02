@@ -105,8 +105,7 @@ public class GUIView extends JFrame{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                //view.notifyObservers("startGame");
-                System.out.println(getGridSize());
+                view.notifyObservers("startGame");
             }
         });
         chooseGridSize.add(start);
