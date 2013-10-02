@@ -75,13 +75,14 @@ public class Jeu extends Observable {
 		this.setChanged(); //valider les changements du controlleur
 		
 		if(this.verifierGagner(posX, posY)){
-                    Joueur winner = this.getCurrentJoueur();
-                    this.toggleCurrentJoueur();
-                    Joueur looser = this.getCurrentJoueur();
-                    this.addStat(new Stat(winner, looser));
+                        Joueur winner = this.getCurrentJoueur();
+                        this.toggleCurrentJoueur();
+                        Joueur looser = this.getCurrentJoueur();
+                        this.addStat(new Stat(winner, looser));
 			this.notifyObservers("Gagne");
 		}else{
-			this.notifyObservers("Drawing");
+                        this.toggleCurrentJoueur();
+                        this.notifyObservers("Drawing");
 		}
 		
 		
@@ -127,31 +128,49 @@ public class Jeu extends Observable {
 	}
 
 	public Boolean verifierGagner(int posX, int posY){
-		boolean trouve = true;
+		boolean winLigne = true;
+		boolean winColon = true;
+		boolean winCross = true;
 		int temp;
 		Symbole symbole;
 		for (int i = 0; i < 3; i++) {
-			temp = i;
-			symbole = this.getSymbole(posX, i);
-			if (symbole != null && !symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
-				trouve = false;
-			}
-			symbole = this.getSymbole(i, posY);
-			if (symbole != null && !symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
-				trouve = false;
-			}
-			symbole = this.getSymbole(posX+temp-1, posY+temp-1);
-			if (symbole != null && !symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
-				trouve = false;
-			}
-			symbole = this.getSymbole(posX+temp+1, posY-temp+1);
-			if (symbole != null && !symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
-				trouve = false;
-			}
+                    String out = "ok";
+                    symbole = this.getSymbole(posX, i);
+                    if(symbole == null){
+                        out = "null";
+                        winColon = false;
+                    }
+                    else if(!symbole.getJoueur().getForme().equals(this.currentJoueur.getForme())){
+                        out = "different";
+                        winColon = false;
+                    }
+                    System.out.println(out);
+                    
+//			temp = i;
+//			symbole = this.getSymbole(posX, i);
+//			if (symbole != null && symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
+//				trouve = true;
+//			}
+//                        
+//			symbole = this.getSymbole(i, posY);
+//			if (symbole != null && symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
+//				trouve = true;
+//			}
+//                        
+//			symbole = this.getSymbole(i, i);
+//			if (symbole != null && symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
+//				trouve = true;
+//			}
+//                       
+//			symbole = this.getSymbole(i, 2-i);
+//			if (symbole != null && symbole.getJoueur().getForme().equals(this.getCurrentJoueur().getForme())) {
+//				trouve = true;
+//			}
 			
 		}
-		System.out.println(trouve);
-		return trouve;
+                boolean win = winColon;
+		System.out.println(win);
+		return win;
 		
 	}
 

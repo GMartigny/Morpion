@@ -40,7 +40,6 @@ public class MorpionController implements Observer{
 		    	Joueur joueur = jeu.getCurrentJoueur();
 	    		
 	    		jeu.addSymbole(joueur, posX, posY);
-	    		jeu.toggleCurrentJoueur(); 
 	    		this.view.getGUI().repaint();
 	    	}	
 	    	
