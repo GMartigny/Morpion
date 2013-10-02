@@ -40,5 +40,7 @@ public class MorpionView extends Observable implements Observer{
     ArrayList getStatsFromModel() {
         return this.jeu.getStats();
     }
+
     
+    //test git
 }
