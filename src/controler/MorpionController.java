@@ -8,6 +8,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import model.Jeu;
+import model.Joueur;
 import view.GUIView;
 
 /**
@@ -25,18 +26,23 @@ public class MorpionController implements Observer{
 
     @Override
     public void update(Observable o, Object arg) {
-
-    	if(arg.equals("click")){
-    		
-    	}
+    	//récupérer la case cliquée et le joueur qui a cliqué
+	    	int posX = o.getPosX();
+	    	int posY = o.getPosY();
+	    	Joueur joueur = jeu.getCurrentJoueur();
+    	
+    	//Au click, on ajoute le symbole dans le model "jeu"
+	    	if(arg.equals("click")){    		
+	    		jeu.addSymbole(joueur, posX, posY);
+	    	}	
 
     }
-
-
     
     public Jeu getJeu() {
 		return jeu;
 	}
+    
+    
 
 
 }

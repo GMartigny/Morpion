@@ -12,11 +12,14 @@ public class Jeu extends Observable {
 	private Joueur joueur1;
 	private Joueur joueur2;
 	
+	private Joueur currentJoueur;
+	
 	
 	public Jeu(Joueur joueur1, Joueur joueur2) {
 		// TODO Auto-generated constructor stub
 		this.etat = Etat.start;
 		this.joueur1 = joueur1;
+		this.currentJoueur = this.joueur1;
 		this.joueur2 = joueur2;
 	}
 	
@@ -69,7 +72,19 @@ public class Jeu extends Observable {
 		
 	}
 
-	
+	public void addSymbole(Joueur joueur, int posX, int posY){
+		jeu.add(new Symbole(posX, posY, joueur));
+	}
+
+
+	public Joueur getCurrentJoueur() {
+		return currentJoueur;
+	}
+
+
+	public void setCurrentJoueur(Joueur currentJoueur) {
+		this.currentJoueur = currentJoueur;
+	}
 	
 	
 	
