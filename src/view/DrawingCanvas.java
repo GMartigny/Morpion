@@ -52,7 +52,7 @@ public class DrawingCanvas extends JPanel {
             gra.drawLine(posX+10, (this.getHeight()/3)-10, (this.getWidth()/3)-10, posY-10);
         }
         else if(type == TypeForme.rond){
-            
+            gra.drawOval(posX+10, posY+10, this.getWidth()/3, this.getHeight()/3);
         }
     }
     
