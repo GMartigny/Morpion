@@ -86,6 +86,15 @@ public class Jeu extends Observable {
 		this.currentJoueur = currentJoueur;
 	}
 	
+	
+	public void toggleCurrentJoueur(){
+		// passer la main au joueur suivant
+		if (this.currentJoueur.equals(joueur1)) {
+			this.setCurrentJoueur(joueur2);
+		}else{
+			this.setCurrentJoueur(joueur1);
+		}
+	}
 
 
 }

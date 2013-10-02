@@ -8,8 +8,9 @@ import java.awt.BasicStroke;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.util.ArrayList;
+
 import javax.swing.JPanel;
-import model.Forme;
+
 import model.Symbole;
 import model.TypeForme;
 
@@ -22,7 +23,7 @@ public class DrawingCanvas extends JPanel {
     private ArrayList<Symbole> symboles;
 
     public DrawingCanvas() {
-        this.symboles = new ArrayList<>();
+        this.symboles = new ArrayList<Symbole>();
     }
     
     @Override
@@ -42,7 +43,7 @@ public class DrawingCanvas extends JPanel {
         }
     }
 
-    public void setSymboleList(ArrayList symboles) {
+    public void setSymboleList(ArrayList<Symbole> symboles) {
         this.symboles = symboles;
     }
 

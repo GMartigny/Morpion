@@ -18,11 +18,12 @@ import view.MorpionView;
  */
 public class MorpionController implements Observer{
     
-    GUIView view;
+    private MorpionView view;
     private Jeu jeu;
     
-    public MorpionController(Jeu jeu) {
-    	this.jeu = jeu;
+    public MorpionController(MorpionView view) {
+    	this.jeu = view.getModel();
+    	this.view = view;
     }
 
     @Override
@@ -36,6 +37,8 @@ public class MorpionController implements Observer{
     	//Au click, on ajoute le symbole dans le model "jeu"
 	    	if(arg.equals("click")){    		
 	    		jeu.addSymbole(joueur, posX, posY);
+	    		jeu.toggleCurrentJoueur(); 
+	    		this.view.getGUI().repaint();
 	    	}	
 
     }

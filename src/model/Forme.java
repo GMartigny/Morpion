@@ -1,7 +1,5 @@
 package model;
 
-import java.awt.Graphics2D;
-import view.DrawingCanvas;
 
 public class Forme {
     private TypeForme type;
@@ -12,7 +10,7 @@ public class Forme {
     }
 
     public void dessin(){
-
+    	
     }
 
     public TypeForme getType() {
