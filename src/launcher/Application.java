@@ -7,7 +7,6 @@ package launcher;
 import controler.MorpionController;
 import javax.swing.SwingUtilities;
 import model.MorpionModel;
-import view.MorpionView;
 
 /**
  *
