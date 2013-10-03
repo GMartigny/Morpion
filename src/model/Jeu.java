@@ -61,6 +61,9 @@ public class Jeu extends Observable {
                 Joueur looser = this.getNotCurrentJoueur();
                 this.addStat(new Stat(winner, looser));
                 this.notifyObservers("Gagne");
+            } else if (this.jeu.size() == Math.pow(this.taille, 2)) {
+                this.addStat(new Stat(this.getJoueur1(), this.getJoueur2(), true));
+                this.notifyObservers("Draw");
             } else {
                 this.toggleCurrentJoueur();
                 this.notifyObservers("Drawing");
@@ -169,7 +172,7 @@ public class Jeu extends Observable {
     public void addStat(Stat stat) {
         this.stats.add(0, stat);
         if (7 < this.stats.size()) {
-            this.stats.remove(this.stats.size()-1);
+            this.stats.remove(this.stats.size() - 1);
         }
     }
 

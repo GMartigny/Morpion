@@ -30,6 +30,9 @@ public class MorpionView extends Observable implements Observer {
         } else if (arg.equals("Gagne")) {
             WinFrame win = new WinFrame(this);
         }
+        else if(arg.equals("Draw")){
+            DrawFrame draw = new DrawFrame(this);
+        }
     }
 
     public void makeNotify(String message) {
